@@ -1,0 +1,41 @@
+# DataSource Config
+spring:
+  application:
+    name: ware-jwt-token
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://101.34.48.210:3306/zrgj2?useUnicode=true&characterEncoding=utf8
+    username: zrgj2
+    password: zrgj2
+
+
+  hikari:
+    max-lifetime: 50000
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    max-idle: 8
+    min-idle: 0
+    max-active: 8
+    maxwait: -1
+    timeout: 0
+    isRedisCache: 1  #是否使用redis缓存
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**Mapper.xml
+#example:
+#  jwt:
+#    secret: f4e2e52034348f86b67cde581c0f9eb5
+#    # token有效时长，7天，单位秒
+#    expire: 604800
+#    header: token
+server:
+  port: 8081
+demo:
+  jwt:
+    # 加密密钥
+    secret: f4e2e52034348f86b67cde581c0f9eb5
+    # token有效时长
+    expire: 604800
+    # header 名称
+    header: token
