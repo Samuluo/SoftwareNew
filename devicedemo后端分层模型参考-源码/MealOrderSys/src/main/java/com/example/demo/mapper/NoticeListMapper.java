@@ -1,11 +1,9 @@
 package com.example.demo.mapper;
 
-import com.example.demo.model.domain.User;
+import com.example.demo.model.domain.NoticeList;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
 
 /**
  * <p>
@@ -13,9 +11,9 @@ import java.util.List;
  * </p>
  *
  * @author hjh
- * @since 2022-02-23
+ * @since 2022-02-24
  */
 @Mapper
-public interface UserMapper extends BaseMapper<User> {
-    List<User> getSearch(@Param("string") String string);
+public interface NoticeListMapper extends BaseMapper<NoticeList> {
+    void deleteByNoticeId(@Param("id") Integer id);
 }

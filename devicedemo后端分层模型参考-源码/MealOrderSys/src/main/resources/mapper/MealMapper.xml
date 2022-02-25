@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.demo.mapper.UserMapper">
+<mapper namespace="com.example.demo.mapper.MealMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.example.demo.model.domain.User">
+    <resultMap id="BaseResultMap" type="com.example.demo.model.domain.Meal">
         <id column="id" property="id" />
         <result column="name" property="name" />
-        <result column="password" property="password" />
-        <result column="status" property="status" />
-        <result column="avatar" property="avatar" />
-        <result column="phone" property="phone" />
+        <result column="type" property="type" />
+        <result column="detail" property="detail" />
+        <result column="isGood" property="isGood" />
+        <result column="img" property="img" />
+        <result column="price" property="price" />
+        <result column="stock" property="stock" />
     </resultMap>
 
     <select id="getSearch" parameterType="java.lang.String" resultType="com.example.demo.model.domain.User">
         select *
-        from `user`
+        from `meal`
         where `name` like #{string}
     </select>
 </mapper>

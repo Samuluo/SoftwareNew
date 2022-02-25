@@ -20,14 +20,19 @@ create table `meal`
     `status`  int null,
     `isGood`  int null,
     `img`     varchar(256) null,
-    `price`   float null
+    `price`   float null,
+    --库存
+    `stock`   int   null
 );
 
 create table `order`
 (
     `id`      int auto_increment primary key,
     `table`   int null,
-    `list_id` int null
+    `list_id` int null,
+    `time`    datetime null,
+    `isCompleted` int null,
+    `writer_id`   int null
 );
 
 create table `list`
@@ -38,3 +43,20 @@ create table `list`
     `meal_number` int null,
     `meal_name` varchar(32) null
 );
+
+create table `notice`
+(
+    `id`      int auto_increment primary key,
+    `name`    varchar(32) null,
+    `detail`  varchar(255) null,
+    `userlist_id` int null,
+    birthdate datetime null,
+    writer_id int null
+);
+
+create table `notice_list`
+(
+    `id`      int auto_increment primary key,
+    `notice_id`  int null,
+    `user_id`    int null
+)

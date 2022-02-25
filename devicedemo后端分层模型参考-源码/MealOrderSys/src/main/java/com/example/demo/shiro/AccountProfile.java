@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.io.Serializable;
 
+/**
+ * @author Peter Hai
+ */
 @Data
 public class AccountProfile implements Serializable {
     private Integer id;
@@ -12,8 +15,6 @@ public class AccountProfile implements Serializable {
 
     private String avatar;
 
-    private String phone;
-
-    private int status;
+    private Integer status;
 }
 

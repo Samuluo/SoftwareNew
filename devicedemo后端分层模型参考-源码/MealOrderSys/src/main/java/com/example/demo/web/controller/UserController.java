@@ -1,5 +1,15 @@
 package com.example.demo.web.controller;
 
+import cn.hutool.core.lang.Assert;
+import com.example.demo.shiro.AccountProfile;
+import com.example.demo.shiro.JwtToken;
+import com.example.demo.shiro.util.ShiroUtil;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.ShiroException;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import org.slf4j.Logger;
@@ -9,6 +19,10 @@ import org.springframework.web.bind.annotation.*;
 import com.example.demo.common.JsonResponse;
 import com.example.demo.service.UserService;
 import com.example.demo.model.domain.User;
+
+import javax.websocket.server.PathParam;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -58,7 +72,7 @@ public class UserController {
     */
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     @ResponseBody
-    public JsonResponse updateUser(@PathVariable("id") Integer  id,User  user) throws Exception {
+    public JsonResponse updateUser(@PathVariable("id") Integer  id,@RequestBody User  user) throws Exception {
         user.setId(id);
         userService.updateById(user);
         return JsonResponse.success(null);
@@ -69,11 +83,36 @@ public class UserController {
     * 描述:创建User
     *
     */
-    @RequestMapping(value = "", method = RequestMethod.POST)
+    @RequestMapping(value = "/new", method = RequestMethod.POST)
     @ResponseBody
-    public JsonResponse create(User  user) throws Exception {
+    public JsonResponse create(@RequestBody User  user) throws Exception {
         userService.save(user);
         return JsonResponse.success(null);
     }
+
+
+    /**
+     * 获取用户列表*/
+    //@RequiresAuthentication
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse getList() {
+        List<User> users = new ArrayList<>();
+        users = userService.list();
+//        if(ShiroUtil.getProfile().getStatus()!=0) {
+//            return JsonResponse.failure("你的权限不够！");
+//        }
+        return JsonResponse.success(users);
+    }
+   /**
+    *
+    * 4. 查询员工信息：根据关键字 检索*/
+   @RequestMapping(value="/search",method=RequestMethod.POST)
+   @ResponseBody
+   public JsonResponse getSearchResults(@RequestBody String string) {
+        List<User> users = new ArrayList<User>();
+        users = userService.getSearch("%"+string+"%");
+        return JsonResponse.success(users);
+   }
 }
 

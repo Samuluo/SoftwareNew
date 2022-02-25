@@ -1,8 +1,9 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.model.domain.Meal;
+import com.example.demo.mapper.MealMapper;
 import com.example.demo.model.domain.User;
-import com.example.demo.mapper.UserMapper;
-import com.example.demo.service.UserService;
+import com.example.demo.service.MealService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,15 +16,15 @@ import java.util.List;
  * </p>
  *
  * @author hjh
- * @since 2022-02-23
+ * @since 2022-02-25
  */
 @Service
-public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
+public class MealServiceImpl extends ServiceImpl<MealMapper, Meal> implements MealService {
     @Autowired
-    private UserMapper userMapper;
+    private MealMapper mapper;
 
     @Override
-    public List<User> getSearch(String string) {
-        return userMapper.getSearch(string);
+    public List<Meal> getSearch(String string) {
+        return mapper.getSearch(string);
     }
 }
