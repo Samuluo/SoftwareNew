@@ -12,5 +12,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-02-25
  */
 public interface OrderListService extends IService<OrderList> {
-
+    void deleteByOrderId(Integer id);
 }

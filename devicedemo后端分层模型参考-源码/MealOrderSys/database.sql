@@ -25,7 +25,7 @@ create table `meal`
     `stock`   int   null
 );
 
-create table `order`
+create table `mealOrder`
 (
     `id`      int auto_increment primary key,
     `table`   int null,

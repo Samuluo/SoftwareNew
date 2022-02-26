@@ -93,15 +93,16 @@ public class UserController {
 
     /**
      * 获取用户列表*/
-    //@RequiresAuthentication
+
     @RequestMapping(value = "/list", method = RequestMethod.GET)
+    //@RequiresRoles("0")
     @ResponseBody
     public JsonResponse getList() {
         List<User> users = new ArrayList<>();
         users = userService.list();
-//        if(ShiroUtil.getProfile().getStatus()!=0) {
-//            return JsonResponse.failure("你的权限不够！");
-//        }
+/*        if(ShiroUtil.getProfile().getStatus()!=0) {
+            return JsonResponse.failure("你的权限不够！");
+        }*/
         return JsonResponse.success(users);
     }
    /**

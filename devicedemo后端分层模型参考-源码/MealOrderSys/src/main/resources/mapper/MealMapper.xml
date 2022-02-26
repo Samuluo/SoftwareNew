@@ -14,7 +14,7 @@
         <result column="stock" property="stock" />
     </resultMap>
 
-    <select id="getSearch" parameterType="java.lang.String" resultType="com.example.demo.model.domain.User">
+    <select id="getSearch" parameterType="java.lang.String" resultType="com.example.demo.model.domain.Meal">
         select *
         from `meal`
         where `name` like #{string}

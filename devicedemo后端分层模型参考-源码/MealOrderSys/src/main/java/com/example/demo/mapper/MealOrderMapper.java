@@ -1,9 +1,8 @@
 package com.example.demo.mapper;
 
-import com.example.demo.model.domain.OrderList;
+import com.example.demo.model.domain.MealOrder;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -14,6 +13,6 @@ import org.apache.ibatis.annotations.Param;
  * @since 2022-02-25
  */
 @Mapper
-public interface OrderListMapper extends BaseMapper<OrderList> {
-    void deleteByOrderId(@Param("id") Integer id);
+public interface MealOrderMapper extends BaseMapper<MealOrder> {
+    Integer getMax();
 }

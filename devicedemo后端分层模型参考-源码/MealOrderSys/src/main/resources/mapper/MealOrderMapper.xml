@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.demo.mapper.OrderMapper">
+<mapper namespace="com.example.demo.mapper.MealOrderMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.example.demo.model.domain.Order">
+    <resultMap id="BaseResultMap" type="com.example.demo.model.domain.MealOrder">
         <id column="id" property="id" />
-        <result column="table" property="table" />
+        <result column="table_id" property="tableId" />
         <result column="time" property="time" />
         <result column="isCompleted" property="isCompleted" />
         <result column="writer_id" property="writerId" />
     </resultMap>
 
+    <select id="getMax" resultType="java.lang.Integer">
+        select max(id)
+        from `meal_order`
+    </select>
 </mapper>

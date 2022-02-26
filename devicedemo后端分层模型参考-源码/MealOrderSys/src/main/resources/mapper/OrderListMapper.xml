@@ -11,4 +11,8 @@
         <result column="meal_name" property="mealName" />
     </resultMap>
 
+    <select id="deleteByOrderId" parameterType="java.lang.Integer" >
+        delete from `order_list`
+        where `order_id` = #{id}
+    </select>
 </mapper>

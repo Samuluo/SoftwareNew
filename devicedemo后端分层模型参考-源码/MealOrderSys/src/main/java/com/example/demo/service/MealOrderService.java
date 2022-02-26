@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.model.domain.Order;
+import com.example.demo.model.domain.MealOrder;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author hjh
  * @since 2022-02-25
  */
-public interface OrderService extends IService<Order> {
-
+public interface MealOrderService extends IService<MealOrder> {
+    Integer getMax();
 }

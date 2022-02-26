@@ -75,9 +75,10 @@ public class NoticeController {
         notice.setId(id);
         List<Integer> list = noticeListUnit.getList();
         noticeService.updateById(notice);
+        noticeListService.deleteByNoticeId(id);
         for(int i=0;i<list.size();i++) {
             NoticeList  noticeList = new NoticeList().setNoticeId(id).setUserId(list.get(i));
-            noticeListService.updateById(noticeList);
+            noticeListService.save(noticeList);
         }
         return JsonResponse.success(null);
     }
