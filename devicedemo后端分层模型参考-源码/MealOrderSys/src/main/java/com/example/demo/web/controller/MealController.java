@@ -11,6 +11,7 @@ import com.example.demo.common.JsonResponse;
 import com.example.demo.service.MealService;
 import com.example.demo.model.domain.Meal;
 
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -101,7 +102,11 @@ public class MealController {
     @ResponseBody
     public JsonResponse getSearchResults(@RequestBody String string) {
         List<Meal> meals = new ArrayList<Meal>();
-        meals = mealService.getSearch("%"+string+"%");
+        string = string.replace("=","");
+        //巨坑的url解码，测了好半天
+        String s = URLDecoder.decode(string);
+        System.out.println(s);
+        meals = mealService.getSearch("%"+s+"%");
         return JsonResponse.success(meals);
     }
 }
