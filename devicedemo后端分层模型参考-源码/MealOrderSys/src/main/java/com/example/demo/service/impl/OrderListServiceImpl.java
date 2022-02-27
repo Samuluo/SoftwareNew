@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务实现类
@@ -19,6 +21,12 @@ import org.springframework.stereotype.Service;
 public class OrderListServiceImpl extends ServiceImpl<OrderListMapper, OrderList> implements OrderListService {
     @Autowired
     private OrderListMapper orderListMapper;
+
+    @Override
+    public List<OrderList> getByOrderId(Integer id) {
+        return orderListMapper.getByOrderId(id);
+    }
+
     @Override
     public void deleteByOrderId(Integer id) {
         orderListMapper.deleteByOrderId(id);

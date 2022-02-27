@@ -15,4 +15,8 @@
         delete from `order_list`
         where `order_id` = #{id}
     </select>
+    <select id="getByOrderId" parameterType="java.lang.Integer" resultType="com.example.demo.model.domain.OrderList">
+        select * from `order_list`
+        where `order_id` = #{id}
+    </select>
 </mapper>

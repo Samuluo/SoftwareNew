@@ -107,10 +107,27 @@ public class MealOrderController {
     public JsonResponse getList() {
         List<MealOrder> users = new ArrayList<>();
         users = mealOrderService.list();
+        List<OrderListUnit> list = new ArrayList<>();
+        for(int i=0;i<users.size();i++) {
+            OrderListUnit order = new OrderListUnit();
+            order.setMealOrder(users.get(i));
+            System.out.println(users.get(i).getId());
+            List<OrderList> orderList = orderListService.getByOrderId(users.get(i).getId());
+
+            List <Pair> list2 = new ArrayList<Pair>();
+            for(int j=0;j<orderList.size();j++) {
+                Pair pair = new Pair();
+                pair.setX(orderList.get(j).getMealId());
+                pair.setY(orderList.get(j).getMealNumber());
+                list2.add(pair);
+            }
+            order.setOrderList(list2);
+            list.add(order);
+        }
 //        if(ShiroUtil.getProfile().getStatus()!=0) {
 //            return JsonResponse.failure("你的权限不够！");
 //        }
-        return JsonResponse.success(users);
+        return JsonResponse.success(list);
     }
 }
 

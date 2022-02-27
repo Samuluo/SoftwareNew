@@ -11,5 +11,9 @@ import java.util.List;
 public class OrderListUnit {
     private MealOrder mealOrder;
     private List<Pair> orderList;
+
+    void setList(List<Pair> list) {
+        this.orderList = list;
+    }
 }
 
