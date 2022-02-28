@@ -86,6 +86,34 @@ public class NoticeController {
         return JsonResponse.success(null);
     }
 
+    /**
+     * 描述：根据Id 更新2
+     *
+     */
+    @RequestMapping(value = "/xiugai/{id}", method = RequestMethod.PUT)
+    @ResponseBody
+    public JsonResponse updateNotice2(@PathVariable("id") Integer  id,@RequestBody NoticeListUnit noticeListUnit) throws Exception {
+        Notice notice = noticeListUnit.getNotice();
+        notice.setId(id);
+        List<Integer> l = noticeListUnit.getList();
+        List<Integer> list = new ArrayList<>();
+        noticeService.updateById(notice);
+        noticeListService.deleteByNoticeId(id);
+        for(int i=0;i<l.size();i++) {
+            if(l.get(i)==0) {
+                list.addAll(userService.getSearch2(0));
+            } else if(l.get(i)==1) {
+                list.addAll(userService.getSearch2(1));
+            } else if(l.get(i)==2) {
+                list.addAll(userService.getSearch2(2));
+            }
+        }
+        for(int i=0;i<list.size();i++) {
+            NoticeList  noticeList = new NoticeList().setNoticeId(id).setUserId(list.get(i));
+            noticeListService.save(noticeList);
+        }
+        return JsonResponse.success(null);
+    }
 
     /**
     * 描述:创建Notice
@@ -123,25 +151,24 @@ public class NoticeController {
      * 描述:根据用户类别创建Notice
      *
      */
-    @RequestMapping(value = "/new/{option}", method = RequestMethod.POST)
+    @RequestMapping(value = "/new", method = RequestMethod.POST)
     @ResponseBody
-    public JsonResponse create2(@PathVariable("option") Integer  option,@RequestBody Notice notice) throws Exception {
+    public JsonResponse create2(@RequestBody NoticeListUnit noticeListUnit) throws Exception {
+        Notice notice = noticeListUnit.getNotice();
+        List<Integer> l = noticeListUnit.getList();
         noticeService.save(notice);
         Integer id = noticeService.getMax();
         List<Integer> list = new ArrayList<>();
         //所有人
-        if(option==-1) {
-           for(int i=0;i<3;i++) {
-               list.addAll(userService.getSearch2(i));
-           }
-        } else if(option==0) {
-            list = userService.getSearch2(0);
-        } else if(option==1) {
-            list = userService.getSearch2(1);
-        } else if(option==2) {
-            list = userService.getSearch2(2);
+        for(int i=0;i<l.size();i++) {
+            if(l.get(i)==0) {
+                list.addAll(userService.getSearch2(0));
+            } else if(l.get(i)==1) {
+                list.addAll(userService.getSearch2(1));
+            } else if(l.get(i)==2) {
+                list.addAll(userService.getSearch2(2));
+            }
         }
-
         for(int i=0;i<list.size();i++) {
             NoticeList  noticeList = new NoticeList().setNoticeId(id).setUserId(list.get(i));
             noticeListService.save(noticeList);
