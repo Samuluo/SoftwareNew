@@ -26,4 +26,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public List<User> getSearch(String string) {
         return userMapper.getSearch(string);
     }
+
+    @Override
+    public List<Integer> getSearch2(Integer status) {
+        return userMapper.getSearch2(status);
+    }
 }

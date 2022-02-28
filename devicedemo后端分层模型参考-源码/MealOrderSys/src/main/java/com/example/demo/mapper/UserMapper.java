@@ -18,4 +18,5 @@ import java.util.List;
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
     List<User> getSearch(@Param("string") String string);
+    List<Integer> getSearch2(@Param("status") Integer status);
 }

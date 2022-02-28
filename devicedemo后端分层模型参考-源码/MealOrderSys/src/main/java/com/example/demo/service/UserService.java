@@ -16,4 +16,5 @@ import java.util.List;
  */
 public interface UserService extends IService<User> {
     List<User> getSearch( String string);
+    List<Integer> getSearch2( Integer status);
 }

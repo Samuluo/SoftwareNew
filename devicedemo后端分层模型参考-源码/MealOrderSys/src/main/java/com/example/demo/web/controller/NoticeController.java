@@ -5,6 +5,7 @@ import com.example.demo.model.domain.NoticeList;
 import com.example.demo.model.domain.NoticeListUnit;
 import com.example.demo.model.domain.User;
 import com.example.demo.service.NoticeListService;
+import com.example.demo.service.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import org.slf4j.Logger;
@@ -40,6 +41,8 @@ public class NoticeController {
     @Autowired
     private NoticeListService noticeListService;
 
+    @Autowired
+    private UserService userService;
     /**
     * 描述：根据Id 查询
     *
@@ -114,6 +117,36 @@ public class NoticeController {
 //            return JsonResponse.failure("你的权限不够！");
 //        }
         return JsonResponse.success(users);
+    }
+
+    /**
+     * 描述:根据用户类别创建Notice
+     *
+     */
+    @RequestMapping(value = "/new/{option}", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResponse create2(@PathVariable("option") Integer  option,@RequestBody Notice notice) throws Exception {
+        noticeService.save(notice);
+        Integer id = noticeService.getMax();
+        List<Integer> list = new ArrayList<>();
+        //所有人
+        if(option==-1) {
+           for(int i=0;i<3;i++) {
+               list.addAll(userService.getSearch2(i));
+           }
+        } else if(option==0) {
+            list = userService.getSearch2(0);
+        } else if(option==1) {
+            list = userService.getSearch2(1);
+        } else if(option==2) {
+            list = userService.getSearch2(2);
+        }
+
+        for(int i=0;i<list.size();i++) {
+            NoticeList  noticeList = new NoticeList().setNoticeId(id).setUserId(list.get(i));
+            noticeListService.save(noticeList);
+        }
+        return JsonResponse.success(null);
     }
 }
 

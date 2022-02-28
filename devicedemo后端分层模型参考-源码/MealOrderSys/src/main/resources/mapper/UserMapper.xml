@@ -17,4 +17,10 @@
         from `user`
         where `name` like #{string}
     </select>
+
+    <select id="getSearch2" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select *
+        from `user`
+        where `status` like #{status}
+    </select>
 </mapper>
