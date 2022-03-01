@@ -19,4 +19,5 @@ import java.util.List;
 @Mapper
 public interface MealMapper extends BaseMapper<Meal> {
     List<Meal> getSearch(@Param("string") String string);
+    List<Meal> getByType(@Param("string") String string);
 }

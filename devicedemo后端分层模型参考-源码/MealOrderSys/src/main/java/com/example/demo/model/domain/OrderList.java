@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author hjh
@@ -37,6 +37,7 @@ public class OrderList extends Model<OrderList> {
 
     private String mealName;
 
+    private Integer iscompleted;
 
     @Override
     protected Serializable pkVal() {

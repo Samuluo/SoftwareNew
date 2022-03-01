@@ -16,4 +16,5 @@ import java.util.List;
  */
 public interface MealService extends IService<Meal> {
     List<Meal> getSearch(String string);
+    List<Meal> getByType(String string);
 }

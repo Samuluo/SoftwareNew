@@ -109,5 +109,20 @@ public class MealController {
         meals = mealService.getSearch("%"+s+"%");
         return JsonResponse.success(meals);
     }
+
+    /**
+     *
+     * 4. 查询菜品信息：根据类型 检索*/
+    @RequestMapping(value="/searchByType",method=RequestMethod.POST)
+    @ResponseBody
+    public JsonResponse getSearchResults2(@RequestBody String string) {
+        List<Meal> meals = new ArrayList<Meal>();
+        string = string.replace("=","");
+        //巨坑的url解码，测了好半天
+        String s = URLDecoder.decode(string);
+        System.out.println(s);
+        meals = mealService.getByType("%"+s+"%");
+        return JsonResponse.success(meals);
+    }
 }
 

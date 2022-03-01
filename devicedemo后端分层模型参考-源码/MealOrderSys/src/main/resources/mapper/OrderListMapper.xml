@@ -9,6 +9,7 @@
         <result column="meal_id" property="mealId" />
         <result column="meal_number" property="mealNumber" />
         <result column="meal_name" property="mealName" />
+        <result column="iscompleted" property="iscompleted" />
     </resultMap>
 
     <select id="deleteByOrderId" parameterType="java.lang.Integer" >

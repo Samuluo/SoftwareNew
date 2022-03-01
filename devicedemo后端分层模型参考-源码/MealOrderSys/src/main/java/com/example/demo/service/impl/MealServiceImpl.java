@@ -27,4 +27,9 @@ public class MealServiceImpl extends ServiceImpl<MealMapper, Meal> implements Me
     public List<Meal> getSearch(String string) {
         return mapper.getSearch(string);
     }
+
+    @Override
+    public List<Meal> getByType(String string) {
+        return mapper.getByType(string);
+    }
 }

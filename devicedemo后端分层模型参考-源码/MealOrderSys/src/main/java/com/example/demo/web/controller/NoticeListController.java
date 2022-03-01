@@ -75,5 +75,6 @@ public class NoticeListController {
         noticeListService.save(noticeList);
         return JsonResponse.success(null);
     }
+
 }
 

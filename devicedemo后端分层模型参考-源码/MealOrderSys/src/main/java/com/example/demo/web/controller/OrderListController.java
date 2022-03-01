@@ -75,5 +75,29 @@ public class OrderListController {
         orderListService.save(orderList);
         return JsonResponse.success(null);
     }
+
+    /**
+     * 修改订单状态
+     */
+    @RequestMapping(value="/houchuedit/{id}",method = RequestMethod.PUT)
+    @ResponseBody
+    public JsonResponse editState(@PathVariable("id") Integer id) throws Exception {
+        OrderList orderList = orderListService.getById(id);
+        orderList.setIscompleted(1);
+        orderListService.updateById(orderList);
+        return JsonResponse.success(null);
+    }
+
+    /**
+     * 修改订单状态
+     */
+    @RequestMapping(value="/qiantaiedit/{id}",method = RequestMethod.PUT)
+    @ResponseBody
+    public JsonResponse editState2(@PathVariable("id") Integer id) throws Exception {
+        OrderList orderList = orderListService.getById(id);
+        orderList.setIscompleted(2);
+        orderListService.updateById(orderList);
+        return JsonResponse.success(null);
+    }
 }
 
