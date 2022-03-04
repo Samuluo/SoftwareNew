@@ -118,6 +118,10 @@ public class MealController {
     @ResponseBody
     public JsonResponse getSearchResults2(@RequestBody String string) {
         List<Meal> meals = new ArrayList<Meal>();
+        if(string==null||string=="") {
+            meals = mealService.list();
+            return JsonResponse.success(meals);
+        }
         string = string.replace("=","");
         //巨坑的url解码，测了好半天
         String s = URLDecoder.decode(string);
