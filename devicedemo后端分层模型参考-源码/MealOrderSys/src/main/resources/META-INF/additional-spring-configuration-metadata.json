@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "tx.sms.templateId",
+      "type": "java.lang.String",
+      "description": "Description for tx.sms.templateId."
+  }
+] }
