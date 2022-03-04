@@ -1,5 +1,6 @@
 package com.example.demo.web.controller;
 
+import com.example.demo.model.domain.Meal;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import org.slf4j.Logger;
@@ -9,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import com.example.demo.common.JsonResponse;
 import com.example.demo.service.OrderListService;
 import com.example.demo.model.domain.OrderList;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -98,6 +102,20 @@ public class OrderListController {
         orderList.setIscompleted(2);
         orderListService.updateById(orderList);
         return JsonResponse.success(null);
+    }
+
+    /**
+     * 获取菜品列表*/
+    //@RequiresAuthentication
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse getList() {
+        List<OrderList> list = new ArrayList<>();
+        list = orderListService.list();
+//        if(ShiroUtil.getProfile().getStatus()!=0) {
+//            return JsonResponse.failure("你的权限不够！");
+//        }
+        return JsonResponse.success(list);
     }
 }
 

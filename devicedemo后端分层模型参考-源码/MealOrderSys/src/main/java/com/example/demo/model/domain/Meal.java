@@ -45,7 +45,7 @@ public class Meal extends Model<Meal> {
 
     private Integer stock;
 
-
+    private Integer num;
     @Override
     protected Serializable pkVal() {
         return this.id;

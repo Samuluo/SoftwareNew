@@ -92,6 +92,7 @@ public class MealController {
 //        if(ShiroUtil.getProfile().getStatus()!=0) {
 //            return JsonResponse.failure("你的权限不够！");
 //        }
+
         return JsonResponse.success(meals);
     }
 

@@ -1,6 +1,7 @@
 package com.example.demo.web.controller;
 
 import com.example.demo.model.domain.*;
+import com.example.demo.service.MealService;
 import com.example.demo.service.OrderListService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
@@ -35,6 +36,9 @@ public class MealOrderController {
 
     @Autowired
     private OrderListService orderListService;
+
+    @Autowired
+    private MealService mealService;
 
     /**
     * 描述：根据Id 查询
@@ -74,7 +78,7 @@ public class MealOrderController {
         mealOrderService.updateById(mealOrder);
         orderListService.deleteByOrderId(id);
         for(int i=0;i<list.size();i++) {
-            OrderList  orderList = new OrderList().setOrderId(id).setMealId(list.get(i).getX()).setMealNumber(list.get(i).getY());
+            OrderList  orderList = new OrderList().setOrderId(id).setMealId(list.get(i).getX()).setMealNumber(list.get(i).getY()).setMealName(mealService.getById(list.get(i).getX()).getName());
             orderListService.save(orderList);
         }
         return JsonResponse.success(null);
@@ -93,7 +97,7 @@ public class MealOrderController {
         Integer id = mealOrderService.getMax();
         List<Pair> list = orderListUnit.getOrderList();
         for(int i=0;i<list.size();i++) {
-            OrderList orderList = new OrderList().setOrderId(id).setMealId(list.get(i).getX()).setMealNumber(list.get(i).getY());
+            OrderList  orderList = new OrderList().setOrderId(id).setMealId(list.get(i).getX()).setMealNumber(list.get(i).getY()).setMealName(mealService.getById(list.get(i).getX()).getName());
             orderListService.save(orderList);
         }
         return JsonResponse.success(null);
